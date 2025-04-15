@@ -2,7 +2,6 @@
 
 A task management web application built with React, Vite, and Firebase.
 
-![Taskify App]
 
 ## Features
 
