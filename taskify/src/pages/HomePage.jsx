@@ -25,9 +25,15 @@ function HomePage() {
           A simple and powerful task management application
         </Typography>
         
-        <Grid container spacing={4} sx={{ mt: 3 }}>
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 3, height: '100%' }}>
+        <Grid
+          container
+          spacing={4}
+          justifyContent="center"
+          alignItems="center"
+          sx={{ mt: 3 }}
+        >
+          <Grid item xs={12} sm={8} md={4}>
+            <Paper sx={{ p: 3, height: '100%', textAlign: 'center' }}>
               <Typography variant="h6" gutterBottom>
                 Organize Your Tasks
               </Typography>
@@ -37,8 +43,8 @@ function HomePage() {
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 3, height: '100%' }}>
+          <Grid item xs={12} sm={8} md={4}>
+            <Paper sx={{ p: 3, height: '100%', textAlign: 'center' }}>
               <Typography variant="h6" gutterBottom>
                 Set Priorities
               </Typography>
@@ -48,8 +54,8 @@ function HomePage() {
               </Typography>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Paper sx={{ p: 3, height: '100%' }}>
+          <Grid item xs={12} sm={8} md={4}>
+            <Paper sx={{ p: 3, height: '100%', textAlign: 'center' }}>
               <Typography variant="h6" gutterBottom>
                 Track Progress
               </Typography>
@@ -60,7 +66,7 @@ function HomePage() {
             </Paper>
           </Grid>
         </Grid>
-        
+      
         <Box sx={{ mt: 5 }}>
           {currentUser ? (
             <Button 

@@ -18,16 +18,7 @@ function Footer() {
         <Typography variant="body2" color="text.secondary" align="center">
           {'© '}
           {new Date().getFullYear()}
-          {' Taskify. All rights reserved.'}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" align="center">
-          <Link color="inherit" href="#">
-            Privacy Policy
-          </Link>
-          {' | '}
-          <Link color="inherit" href="#">
-            Terms of Service
-          </Link>
+          {' Taskify. Created by Rounak.'}
         </Typography>
       </Container>
     </Box>

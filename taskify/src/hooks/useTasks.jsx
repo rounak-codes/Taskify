@@ -18,11 +18,14 @@ export function useTasks() {
 
       try {
         setLoading(true);
+        setError(null); // Reset error state
+        console.log("Fetching tasks for user:", currentUser.uid); // Add this for debugging
         const userTasks = await taskService.getUserTasks(currentUser.uid);
+        console.log("Fetched tasks:", userTasks); // Add this for debugging
         setTasks(userTasks);
       } catch (err) {
-        setError('Failed to fetch tasks');
-        console.error(err);
+        console.error("Error in useTasks:", err); // Detailed error logging
+        setError('Failed to fetch tasks: ' + err.message);
       } finally {
         setLoading(false);
       }

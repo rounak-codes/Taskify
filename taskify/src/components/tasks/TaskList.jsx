@@ -1,43 +1,43 @@
 import { useState } from 'react';
-import { 
-  Box, 
-  Typography, 
-  Paper, 
-  Divider, 
-  Tabs, 
-  Tab, 
-  Dialog, 
-  DialogTitle, 
-  DialogContent, 
-  DialogActions, 
-  Button, 
-  CircularProgress 
+import {
+  Box,
+  Typography,
+  Paper,
+  Divider,
+  Tabs,
+  Tab,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+  CircularProgress
 } from '@mui/material';
 import TaskItem from './TaskItem';
 import TaskForm from './TaskForm';
 import { useTasks } from '../../hooks/useTasks';
 
-function TaskList() {
+function TaskList({ extractedTaskForm = false }) {
   const { tasks, loading, error, addTask, updateTask, deleteTask, toggleCompletion } = useTasks();
   const [tabValue, setTabValue] = useState(0);
   const [editTask, setEditTask] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-
+  
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
-
+  
   const handleEdit = (task) => {
     setEditTask(task);
     setDialogOpen(true);
   };
-
+  
   const handleUpdate = (taskId, taskData) => {
     updateTask(taskId, taskData);
     setDialogOpen(false);
     setEditTask(null);
   };
-
+  
   const filteredTasks = () => {
     switch(tabValue) {
       case 0: // All
@@ -50,7 +50,7 @@ function TaskList() {
         return tasks;
     }
   };
-
+  
   if (loading) {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" height="200px">
@@ -58,7 +58,7 @@ function TaskList() {
       </Box>
     );
   }
-
+  
   if (error) {
     return (
       <Typography color="error" align="center" my={3}>
@@ -66,19 +66,22 @@ function TaskList() {
       </Typography>
     );
   }
-
+  
   return (
     <Box>
-      <Paper sx={{ mb: 3, p: 3 }}>
-        <Typography variant="h6" mb={2}>Add New Task</Typography>
-        <TaskForm onAddTask={addTask} />
-      </Paper>
+      {/* We only render the TaskForm if extractedTaskForm is false */}
+      {!extractedTaskForm && (
+        <Paper sx={{ mb: 3, p: 3 }}>
+          <Typography variant="h6" mb={2}>Add New Task</Typography>
+          <TaskForm onAddTask={addTask} />
+        </Paper>
+      )}
       
       <Paper sx={{ mb: 3 }}>
-        <Tabs 
-          value={tabValue} 
-          onChange={handleTabChange} 
-          variant="fullWidth" 
+        <Tabs
+          value={tabValue}
+          onChange={handleTabChange}
+          variant="fullWidth"
           indicatorColor="primary"
           textColor="primary"
         >
@@ -96,12 +99,12 @@ function TaskList() {
             </Typography>
           ) : (
             filteredTasks().map(task => (
-              <TaskItem 
-                key={task.id} 
-                task={task} 
-                onToggle={toggleCompletion} 
-                onDelete={deleteTask} 
-                onEdit={handleEdit} 
+              <TaskItem
+                key={task.id}
+                task={task}
+                onToggle={toggleCompletion}
+                onDelete={deleteTask}
+                onEdit={handleEdit}
               />
             ))
           )}
@@ -112,9 +115,9 @@ function TaskList() {
         <DialogTitle>Edit Task</DialogTitle>
         <DialogContent>
           {editTask && (
-            <TaskForm 
-              initialData={editTask} 
-              onUpdate={handleUpdate} 
+            <TaskForm
+              initialData={editTask}
+              onUpdate={handleUpdate}
             />
           )}
         </DialogContent>
