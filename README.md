@@ -3,6 +3,10 @@
 A task management web application built with React, Vite, and Firebase.
 
 
+## Screenshots
+![1](images/1.png)
+![2](images/2.png)
+
 ## Features
 
 - **User Authentication**
@@ -99,10 +103,6 @@ service cloud.firestore {
   }
 }
 ```
-
-## Screenshots
-![1](images/1.png)
-![2](images/2.png)
 
 ### Development
 
